@@ -1,0 +1,109 @@
+<h1>Tasty Ranking!</h1>
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			<th rowspan="2" class="text-center">Nombre</th>
+			<th colspan="4" class="text-center">Puntuaci&oacute;n</th>
+			<th>
+				<div class="pull-right">
+					<div ng-hide="user">
+						<button class="btn btn-warning btn-xs" ng-click="showRegisterForm()" ><i class="glyphicon glyphicon-edit"></i> Register</button>
+						<button class="btn btn-info btn-xs" ng-click="showLoginForm()" ng-hide="user"><i class="glyphicon glyphicon-log-in"></i> Login</button>
+					</div>
+					<button class="btn btn-danger btn-xs" ng-click="logout()" ng-show="user"><i class="glyphicon glyphicon-log-out"></i> Logout</button>
+				</div>
+				
+			</th>
+		</tr>
+		<tr>
+			<th class="text-center">General</th>
+			<th class="text-center">Comidas</th>
+			<th class="text-center">Servicio</th>
+			<th class="text-center">Extras</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-show="ranking.length == 0">
+			<td colspan="7">
+				No ranking yet!
+			</td>
+		</tr>
+		<tr ng-repeat="local in ranking" ng-hide="ranking.length == 0">
+			<td>
+				{{local.nombre}} 
+			</td>
+			<td class="text-center" rate-class score="local.promedio_general">
+				<span class="badge">
+					{{ local.promedio_general ? (local.promedio_general | number:2) : '-' }}
+				</span>
+			</td>
+			<td class="text-center" rate-class score="local.promedio_comida">
+				<span class="badge">
+					{{ local.promedio_comida ? (local.promedio_comida | number:2) : '-'}}
+				</span>
+			</td>
+			<td class="text-center" rate-class score="local.promedio_servicio">
+				<span class="badge">
+					{{ local.promedio_servicio ? (local.promedio_servicio | number:2) : '-'}}
+				</span>
+			</td>
+			<td class="text-center" rate-class score="local.promedio_extras">
+				<span class="badge">
+					{{ local.promedio_extras ? (local.promedio_extras | number:2) : '-'}}
+				</span>
+			</td>
+			<td>
+				<a ng-href="#/detalles/{{local.slug}}" class="btn btn-info btn-xs btn-checkout">
+					<i class="glyphicon glyphicon-th-list"></i>
+					Stats
+				</a>
+				<a ng-href="#/rank/{{local.slug}}" class="btn btn-xs btn-default btn-rank" ng-show="user && notScored(local)">
+					<i class="glyphicon glyphicon-stats"></i>
+					Score!
+				</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog">
+        <form class="modal-content" novalidate name="form" ng-submit="doLogin(form, $event)">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Sign in</h4>
+            </div>
+            <div class="modal-body">
+				<div class="alert alert-danger" ng-show="loginStatus.hasError">
+					<a class="close" data-dismiss="alert">&times;</a>
+					{{loginStatus.errorMsg}}
+				</div>
+                <div class="form-group">
+                	<label for="user" class="control-label">User</label>
+                	<input type="text" name="user" minlength="4" required ng-model="loginData.user" id="user" class="form-control">
+                	<div ng-show="form.$submitted || form.user.$touched">
+				    	<div ng-show="form.user.$error.required">Tell us your name.</div>
+				    	<div ng-show="form.user.$error.minlength">More than 4 characters please.</div>
+				    </div>
+                </div>
+                <div class="form-group">
+                	<label for="password" class="control-label">Password</label>
+                	<input type="password" name="password" minlength="4" required ng-model="loginData.password" id="password" class="form-control">
+                	<div ng-show="form.$submitted || form.password.$touched">
+				    	<div ng-show="form.password.$error.required">Tell us your password.</div>
+				    	<div ng-show="form.password.$error.minlength">More than 4 characters please.</div>
+				    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

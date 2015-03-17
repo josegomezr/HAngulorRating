@@ -1,0 +1,69 @@
+<p>
+	<a href="#/" class="btn btn-default">Back</a>
+</p>
+
+<h1>Tasty details!</h1>
+
+<h2>{{local.nombre}}</h2>
+
+<h3>Puntuacion promedio</h3>
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			<th class="text-center">General</th>
+			<th class="text-center">Servicio</th>
+			<th class="text-center">Comidas</th>
+			<th class="text-center">Extras</th>
+		</tr>
+	</thead>
+	<tbody>
+		<td class="text-center" rate-class score="local.promedio_general">
+			<span class="badge">
+				{{ local.promedio_general | number:2 }}
+			</span>
+		</td>
+		<td class="text-center" rate-class score="local.promedio_comida">
+			<span class="badge">
+				{{ local.promedio_comida | number:2 }}
+			</span>
+		</td>
+		<td class="text-center" rate-class score="local.promedio_servicio">
+			<span class="badge">
+				{{ local.promedio_servicio | number:2 }}
+			</span>
+		</td>
+		<td class="text-center" rate-class score="local.promedio_extras">
+			<span class="badge">
+				{{ local.promedio_extras | number:2 }}
+			</span>
+		</td>
+	</tbody>
+</table>
+
+<h3>Puntuaciones</h3>
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			<th>Taster</th>
+			<th class="text-center">Comida</th>
+			<th class="text-center">Servicio</th>
+			<th class="text-center">Extras</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="(k, score) in local.taster">
+			<th>
+				{{local.taster[k].nombre}} {{local.taster[k].apellido}}
+			</th>
+			<td class="text-center"  rate-class score="local.puntuacion[k].comida">
+				<span class="badge">{{ local.puntuacion[k].comida | number:2 }}</span>
+			</td>
+			<td class="text-center"  rate-class score="local.puntuacion[k].servicio">
+				<span class="badge">{{ local.puntuacion[k].servicio | number:2 }}</span>
+			</td>
+			<td class="text-center"  rate-class score="local.puntuacion[k].extras">
+				<span class="badge">{{ local.puntuacion[k].extras | number:2 }}</span>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,12 @@
+.ranked-good .badge{
+	background: #5cb85c;
+}
+.ranked-regular .badge{
+	background: #f0ad4e;
+}
+.ranked-bad .badge{
+	background: #d9534f;
+}
+.ranked-excelent .badge{
+	background: #337AB7;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="rating">
+<head>
+	<meta charset="UTF-8">
+	<title>My Rating App</title>
+	<link href="components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+	<link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+	<div class="container">
+		<div ng-view></div>
+	</div>
+
+	<div class="modal fade" data-keyboard="false" id="loading-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Loading</h4>
+                </div>
+                <div class="modal-body">
+                	<div class="alert alert-danger hidden">
+                		<p></p>
+                    </div>
+                    <div class="progress">
+					  	<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+					</div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+	<script src="components/jquery/dist/jquery.js"></script>
+	<script src="components/angular/angular.js"></script>
+	<script src="components/angular-route/angular-route.js"></script>
+	<script src="components/angular-cookies/angular-cookies.js"></script>
+	<script src="components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
